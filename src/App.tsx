@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import './components/hello/Hello';
 import { Hello } from './components/hello/Hello';
+import { Hi } from './components/hi/Hi';
 
 const App: React.FC = () => {
   return (
@@ -21,7 +22,10 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
-      <Hello/>
+      <Hello title="hello title"/>
+      <br/>
+      <br/>
+      <Hi title="hi title"/>
     </div>
   );
 }

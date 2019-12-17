@@ -7,11 +7,21 @@ type ClockState = {
   time: Date
 }
 
+interface IChildComponentProps extends React.Props<any> {
+}
+
+interface PassedProps extends React.Props<any> {
+  title: any
+}
+
 // Clock has no properties, but the current state is of type ClockState
 // The generic parameters in the Component typing allow to pass props
 // and state. Since we don't have props, we pass an empty object.
-export class Hello extends Component<{}, ClockState> {
-
+export class Hello extends Component<IChildComponentProps & PassedProps, ClockState> {
+	constructor(props: any) {
+    super(props)
+    console.log(props.title)
+	}
   // The tick function sets the current state. TypeScript will let us know
   // which ones we are allowed to set.
   tick() {
