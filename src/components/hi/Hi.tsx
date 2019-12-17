@@ -8,16 +8,32 @@ interface PassedProps extends React.Props<any> {
   title: any
 }
 
-export class Hi extends Component<IChildComponentProps & PassedProps, {}> {
+type states = {
+	articles: any,
+  text: string
+}
+
+export class Hi extends Component<IChildComponentProps & PassedProps, states> {
 	constructor(props: any) {
     super(props)
-    console.log(props.title)
+		console.log(props.title)
+		this.state = {
+      articles: [
+        { title: "React Redux Tutorial for Beginners", id: 1 },
+        { title: "TypeScript tutorial for beginners", id: 2 }
+			],
+			text: 'initial text'
+    };
 	}
 	
   get textContent(): String {
-    return `${this.props.title} ok hi component`;
+		const { text } = this.state;
+    return `${this.props.title} ok hi component ${text}`;
   }
 
+	clickHandle() {
+		console.log('clicked');
+	}
 
   componentWillMount() {
 
@@ -27,6 +43,6 @@ export class Hi extends Component<IChildComponentProps & PassedProps, {}> {
   }
 
   render() {
-    return <p className="hi text">click here <span className="subtext">{this.textContent}</span></p>
+    return <p className="hi text"><span onClick={this.clickHandle}>click</span> here <span className="subtext">{this.textContent}</span></p>
   }
 }
